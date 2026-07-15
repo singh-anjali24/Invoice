@@ -1,0 +1,13 @@
+services:
+  invoice-extractor:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount samples directory so results persist on host
+      - ./samples:/app/samples
+      - ./results:/app/results

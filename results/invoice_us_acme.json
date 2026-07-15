@@ -1,0 +1,279 @@
+{
+  "invoice_number": {
+    "value": "INV-2026-00847",
+    "confidence": 0.973,
+    "bounding_box": {
+      "x": 698.0,
+      "y": 914.0,
+      "width": 300.0,
+      "height": 32.0,
+      "page": 0
+    }
+  },
+  "invoice_date": {
+    "value": "2026-07-10",
+    "confidence": 0.956,
+    "bounding_box": {
+      "x": 693.0,
+      "y": 988.0,
+      "width": 247.0,
+      "height": 41.0,
+      "page": 0
+    }
+  },
+  "due_date": {
+    "value": "2026-08-09",
+    "confidence": 0.988,
+    "bounding_box": {
+      "x": 695.0,
+      "y": 1064.0,
+      "width": 301.0,
+      "height": 40.0,
+      "page": 0
+    }
+  },
+  "vendor_name": {
+    "value": "ACME TECHNOLOGIES INC.",
+    "confidence": 0.942,
+    "bounding_box": {
+      "x": 656.0,
+      "y": 348.0,
+      "width": 1234.0,
+      "height": 69.0,
+      "page": 0
+    }
+  },
+  "vendor_tax_id": {
+    "value": "82-1234567",
+    "confidence": 0.976,
+    "bounding_box": {
+      "x": 410.0,
+      "y": 626.0,
+      "width": 195.0,
+      "height": 29.0,
+      "page": 0
+    }
+  },
+  "buyer_name": {
+    "value": "GlobalRetail Solutions LLC",
+    "confidence": 0.933,
+    "bounding_box": {
+      "x": 1531.0,
+      "y": 984.0,
+      "width": 404.0,
+      "height": 50.0,
+      "page": 0
+    }
+  },
+  "line_items": [
+    {
+      "description": {
+        "value": "Cloud Hosting - Enterprise Plan (Monthly)",
+        "confidence": 0.985,
+        "bounding_box": {
+          "x": 385.0,
+          "y": 1426.0,
+          "width": 764.0,
+          "height": 50.0,
+          "page": 0
+        }
+      },
+      "quantity": {
+        "value": 1,
+        "confidence": 0.985,
+        "bounding_box": {
+          "x": 262.0,
+          "y": 1431.0,
+          "width": 16.0,
+          "height": 31.0,
+          "page": 0
+        }
+      },
+      "unit_price": {
+        "value": 2400.0,
+        "confidence": 0.961,
+        "bounding_box": {
+          "x": 1734.0,
+          "y": 1430.0,
+          "width": 179.0,
+          "height": 38.0,
+          "page": 0
+        }
+      },
+      "line_total": {
+        "value": 2400.0,
+        "confidence": 0.961,
+        "bounding_box": {
+          "x": 1734.0,
+          "y": 1430.0,
+          "width": 179.0,
+          "height": 38.0,
+          "page": 0
+        }
+      }
+    },
+    {
+      "description": {
+        "value": "API Gateway License",
+        "confidence": 0.974,
+        "bounding_box": {
+          "x": 383.0,
+          "y": 1530.0,
+          "width": 395.0,
+          "height": 41.0,
+          "page": 0
+        }
+      },
+      "quantity": {
+        "value": 3,
+        "confidence": 0.988,
+        "bounding_box": {
+          "x": 1520.0,
+          "y": 1531.0,
+          "width": 18.0,
+          "height": 32.0,
+          "page": 0
+        }
+      },
+      "unit_price": {
+        "value": 350.0,
+        "confidence": 0.961,
+        "bounding_box": {
+          "x": 1769.0,
+          "y": 1530.0,
+          "width": 144.0,
+          "height": 38.0,
+          "page": 0
+        }
+      },
+      "line_total": {
+        "value": 1050.0,
+        "confidence": 0.967,
+        "bounding_box": {
+          "x": 2109.0,
+          "y": 1530.0,
+          "width": 179.0,
+          "height": 38.0,
+          "page": 0
+        }
+      }
+    },
+    {
+      "description": {
+        "value": "Premium Support Package",
+        "confidence": 0.98,
+        "bounding_box": {
+          "x": 386.0,
+          "y": 1630.0,
+          "width": 492.0,
+          "height": 41.0,
+          "page": 0
+        }
+      },
+      "quantity": {
+        "value": 1,
+        "confidence": 0.985,
+        "bounding_box": {
+          "x": 262.0,
+          "y": 1431.0,
+          "width": 16.0,
+          "height": 31.0,
+          "page": 0
+        }
+      },
+      "unit_price": {
+        "value": 800.0,
+        "confidence": 0.961,
+        "bounding_box": {
+          "x": 1769.0,
+          "y": 1630.0,
+          "width": 144.0,
+          "height": 38.0,
+          "page": 0
+        }
+      },
+      "line_total": {
+        "value": 800.0,
+        "confidence": 0.961,
+        "bounding_box": {
+          "x": 1769.0,
+          "y": 1630.0,
+          "width": 144.0,
+          "height": 38.0,
+          "page": 0
+        }
+      }
+    },
+    {
+      "description": {
+        "value": "Data Analytics Module",
+        "confidence": 0.988,
+        "bounding_box": {
+          "x": 386.0,
+          "y": 1730.0,
+          "width": 408.0,
+          "height": 41.0,
+          "page": 0
+        }
+      },
+      "quantity": {
+        "value": 2,
+        "confidence": 0.988,
+        "bounding_box": {
+          "x": 260.0,
+          "y": 1531.0,
+          "width": 17.0,
+          "height": 31.0,
+          "page": 0
+        }
+      },
+      "unit_price": {
+        "value": 575.0,
+        "confidence": 0.961,
+        "bounding_box": {
+          "x": 1769.0,
+          "y": 1730.0,
+          "width": 144.0,
+          "height": 38.0,
+          "page": 0
+        }
+      },
+      "line_total": {
+        "value": 1150.0,
+        "confidence": 0.964,
+        "bounding_box": {
+          "x": 2109.0,
+          "y": 1730.0,
+          "width": 179.0,
+          "height": 38.0,
+          "page": 0
+        }
+      }
+    }
+  ],
+  "total_amount": {
+    "value": 5845.5,
+    "confidence": 0.967,
+    "bounding_box": {
+      "x": 2072.0,
+      "y": 2053.0,
+      "width": 219.0,
+      "height": 46.0,
+      "page": 0
+    }
+  },
+  "currency": {
+    "value": "USD",
+    "confidence": 0.523,
+    "bounding_box": null
+  },
+  "metadata": {
+    "source_file": "invoice_us_acme.pdf",
+    "model_used": "gemini-2.5-flash",
+    "processing_time_seconds": 18.24,
+    "image_width": 2550,
+    "image_height": 3300,
+    "ocr_words_detected": 116,
+    "validation_warnings": []
+  }
+}

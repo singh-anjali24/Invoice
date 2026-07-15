@@ -1,0 +1,221 @@
+{
+  "invoice_number": {
+    "value": "BDS/2026-27/0234",
+    "confidence": 0.964,
+    "bounding_box": {
+      "x": 632.0,
+      "y": 884.0,
+      "width": 314.0,
+      "height": 32.0,
+      "page": 0
+    }
+  },
+  "invoice_date": {
+    "value": "2026-07-05",
+    "confidence": 0.988,
+    "bounding_box": {
+      "x": 631.0,
+      "y": 959.0,
+      "width": 183.0,
+      "height": 32.0,
+      "page": 0
+    }
+  },
+  "due_date": {
+    "value": "2026-08-04",
+    "confidence": 0.988,
+    "bounding_box": {
+      "x": 631.0,
+      "y": 1034.0,
+      "width": 183.0,
+      "height": 32.0,
+      "page": 0
+    }
+  },
+  "vendor_name": {
+    "value": "BHARATH DIGITAL SERVICES PVT. LTD.",
+    "confidence": 0.959,
+    "bounding_box": {
+      "x": 431.0,
+      "y": 346.0,
+      "width": 1620.0,
+      "height": 63.0,
+      "page": 0
+    }
+  },
+  "vendor_tax_id": {
+    "value": "27AABCB1234F1Z5",
+    "confidence": 0.904,
+    "bounding_box": {
+      "x": 462.0,
+      "y": 559.0,
+      "width": 335.0,
+      "height": 29.0,
+      "page": 0
+    }
+  },
+  "buyer_name": {
+    "value": "Infosys Technologies Ltd",
+    "confidence": 0.988,
+    "bounding_box": {
+      "x": 1486.0,
+      "y": 958.0,
+      "width": 409.0,
+      "height": 37.0,
+      "page": 0
+    }
+  },
+  "line_items": [
+    {
+      "description": {
+        "value": "Software Development Services",
+        "confidence": 0.945,
+        "bounding_box": {
+          "x": 365.0,
+          "y": 1441.0,
+          "width": 502.0,
+          "height": 37.0,
+          "page": 0
+        }
+      },
+      "quantity": {
+        "value": 1,
+        "confidence": 0.21,
+        "bounding_box": null
+      },
+      "unit_price": {
+        "value": 350000.0,
+        "confidence": 0.956,
+        "bounding_box": {
+          "x": 1675.0,
+          "y": 1442.0,
+          "width": 193.0,
+          "height": 33.0,
+          "page": 0
+        }
+      },
+      "line_total": {
+        "value": 350000.0,
+        "confidence": 0.956,
+        "bounding_box": {
+          "x": 1675.0,
+          "y": 1442.0,
+          "width": 193.0,
+          "height": 33.0,
+          "page": 0
+        }
+      }
+    },
+    {
+      "description": {
+        "value": "Cloud Infrastructure Setup",
+        "confidence": 0.945,
+        "bounding_box": {
+          "x": 340.0,
+          "y": 1533.0,
+          "width": 353.0,
+          "height": 30.0,
+          "page": 0
+        }
+      },
+      "quantity": {
+        "value": 1,
+        "confidence": 0.21,
+        "bounding_box": null
+      },
+      "unit_price": {
+        "value": 125000.0,
+        "confidence": 0.956,
+        "bounding_box": {
+          "x": 1676.0,
+          "y": 1534.0,
+          "width": 192.0,
+          "height": 33.0,
+          "page": 0
+        }
+      },
+      "line_total": {
+        "value": 125000.0,
+        "confidence": 0.956,
+        "bounding_box": {
+          "x": 1676.0,
+          "y": 1534.0,
+          "width": 192.0,
+          "height": 33.0,
+          "page": 0
+        }
+      }
+    },
+    {
+      "description": {
+        "value": "Annual Maintenance Contract",
+        "confidence": 0.988,
+        "bounding_box": {
+          "x": 338.0,
+          "y": 1625.0,
+          "width": 495.0,
+          "height": 30.0,
+          "page": 0
+        }
+      },
+      "quantity": {
+        "value": 1,
+        "confidence": 0.21,
+        "bounding_box": null
+      },
+      "unit_price": {
+        "value": 75000.0,
+        "confidence": 0.988,
+        "bounding_box": {
+          "x": 1706.0,
+          "y": 1626.0,
+          "width": 162.0,
+          "height": 33.0,
+          "page": 0
+        }
+      },
+      "line_total": {
+        "value": 75000.0,
+        "confidence": 0.988,
+        "bounding_box": {
+          "x": 1706.0,
+          "y": 1626.0,
+          "width": 162.0,
+          "height": 33.0,
+          "page": 0
+        }
+      }
+    }
+  ],
+  "total_amount": {
+    "value": 649000.0,
+    "confidence": 0.759,
+    "bounding_box": {
+      "x": 2064.0,
+      "y": 1839.0,
+      "width": 210.0,
+      "height": 36.0,
+      "page": 0
+    }
+  },
+  "currency": {
+    "value": "INR",
+    "confidence": 0.906,
+    "bounding_box": {
+      "x": 470.0,
+      "y": 2150.0,
+      "width": 39.0,
+      "height": 46.0,
+      "page": 0
+    }
+  },
+  "metadata": {
+    "source_file": "invoice_india_tcs.pdf",
+    "model_used": "gemini-2.5-flash",
+    "processing_time_seconds": 16.34,
+    "image_width": 2481,
+    "image_height": 3508,
+    "ocr_words_detected": 105,
+    "validation_warnings": []
+  }
+}
