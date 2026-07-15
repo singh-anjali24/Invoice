@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Generate sample invoices at build time
-RUN python generate_samples.py
+RUN python scripts/generate_samples.py
 
 # Expose the API port
 EXPOSE 8000
