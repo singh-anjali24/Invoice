@@ -32,7 +32,7 @@ def _get_ocr_engine():
         _ocr_engine = PaddleOCR(
             use_angle_cls=True,
             lang="en",
-            show_log=False,
+            use_gpu=True,  # Will automatically fallback to CPU if no GPU
         )
         logger.info("PaddleOCR engine initialized")
     return _ocr_engine
