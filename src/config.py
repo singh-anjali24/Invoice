@@ -21,15 +21,15 @@ class Settings(BaseSettings):
     gemini_api_key: str = ""
     gemini_model: str = "gemini-2.5-flash"
 
-    # Tesseract OCR
-    tesseract_cmd: str | None = None
+    # VLM Provider: "gemini" (cloud) or "local" (open-source on Kaggle/GPU)
+    vlm_provider: str = "gemini"
 
     # Poppler (for pdf2image on Windows)
     poppler_path: str | None = None
 
     # Processing
     max_file_size_mb: int = 10
-    ocr_confidence_threshold: int = 30  # Minimum Tesseract confidence (0-100)
+    ocr_confidence_threshold: int = 30  # Minimum OCR confidence (0-100)
     grounding_match_threshold: float = 0.70  # Minimum fuzzy match score
 
     # Confidence weights (must sum to 1.0)
@@ -50,7 +50,3 @@ class Settings(BaseSettings):
 
 # Singleton instance
 settings = Settings()
-
-# Configure Tesseract path if provided
-if settings.tesseract_cmd:
-    os.environ["TESSERACT_CMD"] = settings.tesseract_cmd

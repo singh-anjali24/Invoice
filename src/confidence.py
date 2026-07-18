@@ -12,7 +12,7 @@ as a weighted combination of three independent signals:
 Signal Definitions:
 -------------------
 1. OCR Confidence (weight: 0.30)
-   Source: Tesseract's per-word confidence score.
+   Source: PaddleOCR's per-word confidence score.
    What it measures: How clearly the text was readable at the pixel level.
    Range: 0.0 (unreadable) to 1.0 (crystal clear).
 
