@@ -9,17 +9,18 @@ Extracting structured data from scanned invoices presents two simultaneous chall
 1. **Semantic Understanding** — Identifying what each piece of text *means* (is "2026-07-10" the invoice date or the due date? Is "ACME Corp" the vendor or the buyer?)
 2. **Spatial Localization** — Knowing *where* on the page each value was found (bounding boxes)
 
-No single technology excels at both. Traditional OCR (Tesseract) provides excellent spatial data but has zero semantic understanding. Vision Language Models (VLMs like Gemini) understand document semantics brilliantly but cannot return pixel-accurate coordinates.
+No single technology excels at both. Traditional OCR (PaddleOCR) provides excellent spatial data but has zero semantic understanding. Vision Language Models (VLMs like Gemini/Qwen2) understand document semantics brilliantly but cannot return pixel-accurate coordinates.
 
 ### The Solution: Hybrid VLM + OCR Pipeline
 
 I designed a hybrid architecture that plays to each technology's strengths:
 
 ```
-┌─────────────┐     ┌──────────────┐
-│  Gemini VLM  │     │ Tesseract OCR │
-│  (Semantic)  │     │  (Spatial)    │
-└──────┬──────┘     └──────┬───────┘
+┌─────────────┐     ┌───────────────┐
+│  Gemini /    │     │  PaddleOCR    │
+│  Qwen2 VLM   │     │  (Spatial)    │
+│  (Semantic)  │     │               │
+└──────┬──────┘     └───────┬───────┘
        │                    │
        └────────┬───────────┘
                 │
@@ -33,9 +34,9 @@ I designed a hybrid architecture that plays to each technology's strengths:
        └─────────────────┘
 ```
 
-**Gemini 2.5 Flash** receives the invoice image directly and extracts all fields semantically. It understands layout, normalizes dates to ISO 8601, infers currency from symbols, and identifies vendor vs. buyer. This runs as a single API call with structured output (JSON schema constrained).
+**The Vision Language Model (Gemini or Qwen2)** receives the invoice image directly and extracts all fields semantically. It understands layout, normalizes dates to ISO 8601, infers currency from symbols, and identifies vendor vs. buyer. This runs as a single API call (or local inference) with structured output (JSON schema constrained).
 
-**Tesseract OCR** runs in parallel on the same image, producing a "word map" — every detected text fragment with its pixel-level bounding box and per-character confidence score.
+**PaddleOCR** runs in parallel on the same image, producing a "word map" — every detected text fragment with its pixel-level bounding box and per-character confidence score. PaddleOCR was chosen over Tesseract due to its superior accuracy with deep-learning-based text detection.
 
 **The Grounding Engine** bridges the two: for each value the VLM extracted, it searches the OCR word map using fuzzy string matching (Levenshtein distance via `rapidfuzz`) to find where that value physically appears on the page. This produces the bounding boxes the assignment requires.
 
@@ -73,11 +74,11 @@ Where:
 
 #### Signal 1: OCR Confidence (weight: 0.30)
 
-**Source:** Tesseract's per-word confidence score (0–100, normalized to 0.0–1.0).
+**Source:** PaddleOCR's per-word confidence score (0.0–1.0).
 
 **What it measures:** How clearly the text was readable at the pixel level. A blurry, skewed, or poorly-scanned word will have low OCR confidence regardless of what the VLM thinks it says.
 
-**Why 0.30 weight:** OCR confidence is a useful but noisy signal. Tesseract may give high confidence to incorrectly recognized characters (e.g., reading "l" as "1") or low confidence to perfectly readable text in unusual fonts. It's informative but shouldn't dominate.
+**Why 0.30 weight:** OCR confidence is a useful but noisy signal. PaddleOCR may give high confidence to incorrectly recognized characters or low confidence to perfectly readable text in unusual fonts. It's informative but shouldn't dominate.
 
 #### Signal 2: Grounding Match Score (weight: 0.35)
 
@@ -122,7 +123,7 @@ For a field `vendor_name = "ACME TECHNOLOGIES INC."`:
 
 | Signal | Score | Reasoning |
 |---|---|---|
-| OCR Confidence | 0.91 | Tesseract read all three words with high confidence |
+| OCR Confidence | 0.91 | PaddleOCR read all three words with high confidence |
 | Grounding Match | 0.95 | Fuzzy match found "ACME TECHNOLOGIES INC." in OCR with 95% similarity |
 | Validation | 1.00 | Required field is present (check passed) |
 | **Composite** | **0.30(0.91) + 0.35(0.95) + 0.35(1.00) = 0.956** | Very high confidence |
@@ -191,8 +192,8 @@ The VLM API call and OCR processing run concurrently via `asyncio.gather()`. Sin
 
 | Component | Technology | Rationale |
 |---|---|---|
-| VLM | Gemini 2.5 Flash | Fast, cost-effective, native PDF/image support, structured output |
-| OCR | Tesseract | Open-source, word-level bounding boxes, mature ecosystem |
+| VLM | Gemini / Qwen2 | Swappable backends: Cloud API (Gemini) or Local Open-Source (Qwen2) for 100% privacy |
+| OCR | PaddleOCR | Superior accuracy vs Tesseract, deep-learning based |
 | Schema | Pydantic V2 | Type-safe JSON schema with validation, used by both VLM and API |
 | Fuzzy Matching | rapidfuzz | C-optimized Levenshtein, 10x faster than fuzzywuzzy |
 | API | FastAPI | Async-native, auto-generated docs, Pydantic integration |

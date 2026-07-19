@@ -15,9 +15,10 @@ Invoice (PDF/Image)
     ┌────┴────┐
     ▼         ▼
 ┌────────┐ ┌────────┐
-│ Gemini │ │Tesseract│  ← Run in PARALLEL
-│  VLM   │ │  OCR   │
-└───┬────┘ └───┬────┘
+│  VLM   │ │Paddle  │  ← Run in PARALLEL
+│(Gemini/│ │  OCR   │
+│ Qwen2) │ └────────┘
+└────────┘
     │          │
     ▼          ▼
 ┌─────────────────┐
@@ -39,13 +40,13 @@ Invoice (PDF/Image)
     Structured JSON
 ```
 
-**Why hybrid?** The VLM (Gemini) understands invoice semantics (field identification, date normalization, currency inference) while Tesseract provides pixel-accurate bounding boxes. The grounding engine bridges the two via fuzzy string matching.
+**Why hybrid?** The VLM (Gemini or Qwen2) understands invoice semantics (field identification, date normalization, currency inference) while PaddleOCR provides pixel-accurate bounding boxes. The grounding engine bridges the two via fuzzy string matching.
 
 ## Quick Start
 
 ### Option A: Docker (Recommended — zero system installs)
 
-The only prerequisite is [Docker](https://www.docker.com/products/docker-desktop/). Tesseract, Poppler, and all dependencies are bundled inside the container.
+The only prerequisite is [Docker](https://www.docker.com/products/docker-desktop/). PaddleOCR, Poppler, and all dependencies are bundled inside the container.
 
 ```bash
 # 1. Clone the repo
@@ -75,14 +76,28 @@ docker compose run invoice-extractor python cli.py samples/invoice_us_acme.pdf -
 
 ---
 
-### Option B: Manual Install (without Docker)
+### Option B: Kaggle (Fully Open-Source, No API Keys)
+
+For an environment with zero API keys and 100% data privacy, run the pipeline on Kaggle using a local open-source VLM (`Qwen2-VL-2B`) and PaddleOCR.
+
+1. Go to Kaggle and create a **New Notebook**.
+2. Go to **File → Import Notebook** and paste:
+   ```
+   https://github.com/singh-anjali24/Invoice/blob/main/notebooks/kaggle_demo.ipynb
+   ```
+3. Set **Accelerator** to **GPU T4 x2** and **Internet** to **On**.
+4. Click **Run All**.
+
+---
+
+### Option C: Manual Install (without Docker)
 
 #### Prerequisites
 
 1. **Python 3.11+**
-2. **Tesseract OCR** — [Download for Windows](https://github.com/UB-Mannheim/tesseract/wiki)
+2. **PaddleOCR** — Installed via `pip install paddleocr paddlepaddle`
 3. **Poppler** (for PDF support) — [Download for Windows](https://github.com/oschwartz10612/poppler-windows/releases)
-4. **Gemini API Key** (free) — [Get one here](https://aistudio.google.com/apikey)
+4. **Gemini API Key** (free) — [Get one here](https://aistudio.google.com/apikey) (if using the cloud VLM API backend)
 
 #### Installation
 
@@ -217,7 +232,7 @@ confidence = 0.30 × OCR_confidence + 0.35 × grounding_match + 0.35 × validati
 │   ├── config.py          # Settings & environment management
 │   ├── schemas.py         # Pydantic models (exact output shape)
 │   ├── preprocessing.py   # PDF→Image, enhancement
-│   ├── ocr.py             # Tesseract OCR + bounding boxes
+│   ├── ocr.py             # PaddleOCR + bounding boxes
 │   ├── vlm.py             # Gemini VLM integration
 │   ├── grounding.py       # Fuzzy match VLM→OCR bounding boxes
 │   ├── validation.py      # Arithmetic & consistency checks
