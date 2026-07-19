@@ -33,7 +33,7 @@ def _get_ocr_engine():
             use_angle_cls=True,
             lang="en",
             show_log=False,
-            use_gpu=True,
+            use_gpu=False,  # CPU is fast for OCR; avoids CUDNN conflicts on Kaggle
         )
         logger.info("PaddleOCR engine initialized")
     return _ocr_engine
